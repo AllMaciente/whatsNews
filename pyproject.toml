@@ -5,10 +5,18 @@ description = ""
 authors = ["All <allmacdev@gmail.com>"]
 readme = "README.md"
 
+[tool.taskipy.tasks]
+dev = "python3 dev_watch.py"
+
 [tool.poetry.dependencies]
 python = "^3.10"
 beautifulsoup4 = "^4.12.3"
 requests = "^2.32.3"
+schedule = "^1.2.2"
+
+[tool.poetry.group.dev.dependencies]
+taskipy = "^1.12.2"
+watchgod = "^0.8.2"
 
 
 [build-system]
