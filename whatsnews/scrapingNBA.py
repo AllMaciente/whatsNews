@@ -22,7 +22,7 @@ nba_teams = {
     "MIA": "Heat",
     "MIL": "Bucks",
     "MIN": "Timberwolves",
-    "NOP": "Pelicans",
+    "NO": "Pelicans",
     "NY": "Knicks",  # Sigla conforme a ESPN
     "OKC": "Thunder",
     "ORL": "Magic",
@@ -32,7 +32,7 @@ nba_teams = {
     "SAC": "Kings",
     "SAS": "Spurs",
     "TOR": "Raptors",
-    "UTA": "Jazz",
+    "UTAH": "Jazz",
     "WSH": "Wizards",  # Sigla conforme a ESPN
 }
 
@@ -84,16 +84,20 @@ class Scrap:
             if result != "Cancelado":
                 teams = result.split(",")
                 siglaTeam1, pointsTeam1 = teams[0].split(" ")
-                siglaTeam2, pointsTeam2 = teams[1][1:].split(" ")
+                siglaTeam2, pointsTeam2 = teams[1][1:].split(" ", 1)
                 team1 = nba_teams[siglaTeam1]
                 team2 = nba_teams[siglaTeam2]
                 if pointsTeam1 > pointsTeam2:
-                    result = f"{team1} : {pointsTeam1}Pts \n{team2} : {pointsTeam2}Pts"
+                    result = (
+                        f"{team1} : {pointsTeam1}Pts \n{team2} : {pointsTeam2}Pts\n"
+                    )
                 else:
-                    result = f"{team2} : {pointsTeam2}Pts \n{team1} : {pointsTeam1}Pts"
+                    result = (
+                        f"{team2} : {pointsTeam2}Pts \n{team1} : {pointsTeam1}Pts\n"
+                    )
             self.games.append(
                 {
-                    "Partida": f"{matchup} - {location.replace('em','')}",
+                    "Partida": f"{matchup} - {location.replace('em','')}\n",
                     "Resultado": result,
                 }
             )
