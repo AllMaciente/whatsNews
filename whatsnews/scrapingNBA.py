@@ -30,7 +30,7 @@ nba_teams = {
     "PHX": "Suns",
     "POR": "Trail Blazers",
     "SAC": "Kings",
-    "SAS": "Spurs",
+    "SA": "Spurs",
     "TOR": "Raptors",
     "UTAH": "Jazz",
     "WSH": "Wizards",  # Sigla conforme a ESPN

@@ -1,10 +1,10 @@
 import os
 import time as tm
 from datetime import datetime, timedelta
+from typing import Union
 
-import schedule
 from dotenv import load_dotenv
-from schedule import every, repeat
+from fastapi import FastAPI
 
 # Corrigido para importar do arquivo scrapingNBA.py
 from .scrapingNBA import Scrap
@@ -32,17 +32,12 @@ def genNBAMsg():
     return msg
 
 
-# * schedule functions
-@repeat(every().day.at("05:15"))
+app = FastAPI()
+
+
+@app.get("/sendmsg")
 def sendNBA():
     bot = CallMeBot(os.getenv("TOKEN"), os.getenv("PHONE"))
-    bot.SendMsg(genNBAMsg())
-
-
-def main():
-    while True:
-        schedule.run_pending()
-        tm.sleep(1)
-
-
-def DevMode(): ...
+    msg = genNBAMsg()
+    bot.SendMsg(msg)
+    return {"MSG": msg}
