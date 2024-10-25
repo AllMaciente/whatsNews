@@ -36,7 +36,9 @@ def genNBAMsg():
 @repeat(every().day.at("05:15"))
 def sendNBA():
     bot = CallMeBot(os.getenv("TOKEN"), os.getenv("PHONE"))
-    bot.SendMsg(genNBAMsg())
+    msg = genNBAMsg()
+    bot.SendMsg(msg)
+    return msg
 
 
 def main():
@@ -45,4 +47,5 @@ def main():
         tm.sleep(1)
 
 
-def DevMode(): ...
+def DevMode():
+    print(sendNBA())
